@@ -10,6 +10,10 @@ export default [
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
   {
+    /**
+     * In React v17.0, a new JSX transform introduced, no need these two rule in eslint.
+     * Please see https://legacy.reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html
+     */
     rules: {
       "react/react-in-jsx-scope": "off",
       "react/jsx-uses-react": "off",
