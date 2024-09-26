@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import classes from "./style.module.css";
-import TodoItem, { Todo } from "./components/todoItem";
-import { FetchDetailsOfCurrentTodo } from "./components/todoItem";
-import TodoDetails from "./components/todoDetails";
+import classes from "../style.module.css";
+import TodoItem, { Todo } from "../components/todoItem";
+import { FetchDetailsOfCurrentTodo } from "../components/todoItem";
+import TodoDetails from "../components/todoDetails";
 import { Box, Skeleton } from "@mui/material";
 
-function App() {
+function Home() {
   const [loading, setLoading] = useState(true);
   const [todoList, setTodoList] = useState<Todo[]>([]);
   const [errorMsg, setErrorMsg] = useState<null | string>(null);
@@ -111,4 +111,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
