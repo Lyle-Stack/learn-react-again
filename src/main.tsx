@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/home";
 import ErrorPage from "./pages/errorPage";
-import NoMatch from "./pages/noMatch";
+import NotFoundPage from "./pages/notFoundPage";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
   // keep this in the end of the list
   {
     path: "*",
-    element: <NoMatch />,
+    element: <NotFoundPage />,
   },
 ]);
 

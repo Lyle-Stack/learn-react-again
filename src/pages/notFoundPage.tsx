@@ -1,11 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
-import {
-  isRouteErrorResponse,
-  useNavigate,
-  useRouteError,
-} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function ErrorPage() {
+export default function NotFoundPage() {
   const navigate = useNavigate();
 
   return (
