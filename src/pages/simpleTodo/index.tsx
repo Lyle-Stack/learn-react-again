@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import classes from "../style.module.css";
+import classes from "../../style.module.css";
 import TodoItem, { Todo } from "./todoItem";
 import { FetchDetailsOfCurrentTodo } from "./todoItem";
 import TodoDetails from "./todoDetails";
