@@ -36,7 +36,7 @@ export default function ErrorPage() {
         Oh No!
       </Typography>
       <Typography component="p">
-        Sorry, an unexpected error has occurred.
+        Sorry, an unexpected thing has occurred.
       </Typography>
       <Typography component="p" fontStyle="italic" sx={{ opacity: 0.6 }}>
         {errorMessage}

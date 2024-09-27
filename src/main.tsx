@@ -1,21 +1,28 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/home";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import Home from "./pages";
 import ErrorPage from "./pages/errorPage";
-import NotFoundPage from "./pages/notFoundPage";
+import SimpleTodo from "./pages";
+
+function Layout() {
+  return <Outlet />;
+}
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Home />,
+    element: <Layout />,
     errorElement: <ErrorPage />,
-  },
-
-  // keep this in the end of the list
-  {
-    path: "*",
-    element: <NotFoundPage />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/simple-todo",
+        element: <SimpleTodo />,
+      },
+    ],
   },
 ]);
 

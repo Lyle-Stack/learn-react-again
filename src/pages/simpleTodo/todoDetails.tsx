@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Todo } from "../todoItem";
+import { Todo } from "./todoItem";
 import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
 
 const TodoDetails = ({
