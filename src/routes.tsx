@@ -8,6 +8,7 @@ import LoginAndRegisterFrom from "./pages/loginAndRegister";
 import ReactHookForm from "./pages/reactHookForm";
 import ReactQuery from "./pages/reactQuery";
 import ShoppingCart from "./pages/shoppingCart";
+import { ShoppingCartRouteObject } from "./pages/shoppingCart/routes";
 
 export const RootPathes = {
   "/": "/",
@@ -25,27 +26,41 @@ export const routeObject: RouteObject[] = [
     errorElement: <ErrorPage />,
     children: [
       {
+        id: RootPathes["/"],
         path: RootPathes["/"],
         element: <Home />,
       },
       {
+        id: RootPathes["simple-todo"],
         path: RootPathes["simple-todo"],
         element: <SimpleTodo />,
       },
-      { path: RootPathes["simple-form"], element: <SimpleForm /> },
       {
+        id: RootPathes["simple-form"],
+        path: RootPathes["simple-form"],
+        element: <SimpleForm />,
+      },
+      {
+        id: RootPathes["login-and-register-form"],
         path: RootPathes["login-and-register-form"],
         element: <LoginAndRegisterFrom />,
       },
       {
+        id: RootPathes["react-hook-form"],
         path: RootPathes["react-hook-form"],
         element: <ReactHookForm />,
       },
       {
+        id: RootPathes["react-query"],
         path: RootPathes["react-query"],
         element: <ReactQuery />,
       },
-      { path: RootPathes["shopping-cart"], element: <ShoppingCart /> },
+      {
+        id: RootPathes["shopping-cart"],
+        path: RootPathes["shopping-cart"],
+        element: <ShoppingCart />,
+        children: ShoppingCartRouteObject,
+      },
     ],
   },
 ] as const;
