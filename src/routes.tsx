@@ -7,6 +7,7 @@ import SimpleForm from "./pages/simpleForm";
 import LoginAndRegisterFrom from "./pages/loginAndRegister";
 import ReactHookForm from "./pages/reactHookForm";
 import ReactQuery from "./pages/reactQuery";
+import ShoppingCart from "./pages/shoppingCart";
 
 export const RootPathes = {
   "/": "/",
@@ -15,6 +16,7 @@ export const RootPathes = {
   "login-and-register-form": "login-and-register-form",
   "react-hook-form": "react-hook-form",
   "react-query": "react-query",
+  "shopping-cart": "shopping-cart",
 } as const;
 
 export const routeObject: RouteObject[] = [
@@ -43,6 +45,7 @@ export const routeObject: RouteObject[] = [
         path: RootPathes["react-query"],
         element: <ReactQuery />,
       },
+      { path: RootPathes["shopping-cart"], element: <ShoppingCart /> },
     ],
   },
 ] as const;

@@ -33,6 +33,9 @@ function Root() {
         <LinStyledkWarpper>
           <Link to={RootPathes["react-query"]}>React Query</Link>
         </LinStyledkWarpper>
+        <LinStyledkWarpper>
+          <Link to={RootPathes["shopping-cart"]}>Shopping Cart</Link>
+        </LinStyledkWarpper>
       </nav>
       <main className="w-full block p-2">
         <Outlet />
