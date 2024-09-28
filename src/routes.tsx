@@ -5,12 +5,14 @@ import Home from "./pages/home";
 import SimpleTodo from "./pages/simpleTodo";
 import SimpleForm from "./pages/simpleForm";
 import LoginAndRegisterFrom from "./pages/loginAndRegister";
+import ReactHookForm from "./pages/reactHookForm";
 
 export const RootPathes = {
   "/": "/",
-  "/simple-todo": "/simple-todo",
-  "/simple-form": "simple-form",
-  "/login-and-register-form": "/login-and-register-form",
+  "simple-todo": "simple-todo",
+  "simple-form": "simple-form",
+  "login-and-register-form": "login-and-register-form",
+  "react-hook-form": "react-hook-form",
 } as const;
 
 export const routeObject: RouteObject[] = [
@@ -23,13 +25,17 @@ export const routeObject: RouteObject[] = [
         element: <Home />,
       },
       {
-        path: RootPathes["/simple-todo"],
+        path: RootPathes["simple-todo"],
         element: <SimpleTodo />,
       },
-      { path: RootPathes["/simple-form"], element: <SimpleForm /> },
+      { path: RootPathes["simple-form"], element: <SimpleForm /> },
       {
-        path: RootPathes["/login-and-register-form"],
+        path: RootPathes["login-and-register-form"],
         element: <LoginAndRegisterFrom />,
+      },
+      {
+        path: RootPathes["react-hook-form"],
+        element: <ReactHookForm />,
       },
     ],
   },

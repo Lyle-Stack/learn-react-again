@@ -10,15 +10,18 @@ function Root() {
             <Link to={RootPathes["/"]}>Home</Link>
           </li>
           <li>
-            <Link to={RootPathes["/simple-todo"]}>Simple Todo</Link>
+            <Link to={RootPathes["simple-todo"]}>Simple Todo</Link>
           </li>
           <li>
-            <Link to={RootPathes["/simple-form"]}>Simple Form</Link>
+            <Link to={RootPathes["simple-form"]}>Simple Form</Link>
           </li>
           <li>
-            <Link to={RootPathes["/login-and-register-form"]}>
+            <Link to={RootPathes["login-and-register-form"]}>
               Shared Common Form Component
             </Link>
+          </li>
+          <li>
+            <Link to={RootPathes["react-hook-form"]}>React Hook Form</Link>
           </li>
         </ul>
       </nav>
