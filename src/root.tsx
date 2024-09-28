@@ -15,7 +15,7 @@ function Root() {
         </ul>
       </nav>
       <main>
-        <Outlet />;
+        <Outlet />
       </main>
     </div>
   );
