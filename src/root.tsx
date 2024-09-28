@@ -15,6 +15,11 @@ function Root() {
           <li>
             <Link to={RootPathes["/simple-form"]}>Simple Form</Link>
           </li>
+          <li>
+            <Link to={RootPathes["/login-and-register-form"]}>
+              Shared Common Form Component
+            </Link>
+          </li>
         </ul>
       </nav>
       <main>

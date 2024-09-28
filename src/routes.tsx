@@ -4,11 +4,13 @@ import Root from "./root";
 import Home from "./pages/home";
 import SimpleTodo from "./pages/simpleTodo";
 import SimpleForm from "./pages/simpleForm";
+import LoginAndRegisterFrom from "./pages/loginAndRegister";
 
 export const RootPathes = {
   "/": "/",
   "/simple-todo": "/simple-todo",
   "/simple-form": "simple-form",
+  "/login-and-register-form": "/login-and-register-form",
 } as const;
 
 export const routeObject: RouteObject[] = [
@@ -25,6 +27,10 @@ export const routeObject: RouteObject[] = [
         element: <SimpleTodo />,
       },
       { path: RootPathes["/simple-form"], element: <SimpleForm /> },
+      {
+        path: RootPathes["/login-and-register-form"],
+        element: <LoginAndRegisterFrom />,
+      },
     ],
   },
 ] as const;
