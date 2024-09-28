@@ -23,6 +23,9 @@ function Root() {
           <li>
             <Link to={RootPathes["react-hook-form"]}>React Hook Form</Link>
           </li>
+          <li>
+            <Link to={RootPathes["react-query"]}>React Query</Link>
+          </li>
         </ul>
       </nav>
       <main>
