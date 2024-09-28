@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import classes from "../../style.module.css";
 import TodoItem, { Todo } from "./todoItem";
 import { FetchDetailsOfCurrentTodo } from "./todoItem";
 import TodoDetails from "./todoDetails";
-import { Box, Skeleton } from "@mui/material";
+import { Box, Skeleton, Typography } from "@mui/material";
 
 function Home() {
   const [loading, setLoading] = useState(true);
@@ -42,7 +41,7 @@ function Home() {
     try {
       if (!loading) setLoading(true);
       await new Promise((resolve) => {
-        setTimeout(resolve, 5_000);
+        setTimeout(resolve, 1_000);
       });
       const apiResponse = await fetch("https://dummyjson.com/todos");
       const result = await apiResponse.json();
@@ -83,12 +82,12 @@ function Home() {
     );
 
   return (
-    <div className={classes.mainWrapper}>
-      <h1 className={classes.headerTitle}>
+    <div className="p-12">
+      <Typography component="h1" variant="h4" pb={2}>
         Simple Todo APP Using Material UI
-      </h1>
+      </Typography>
 
-      <div className={classes.todoListWrapper}>
+      <div className="grid grid-cols-3 gap-4">
         {todoList && todoList.length
           ? todoList.map((todoItem) => (
               <TodoItem
