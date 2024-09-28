@@ -12,6 +12,9 @@ function Root() {
           <li>
             <Link to={RootPathes["/simple-todo"]}>Simple Todo</Link>
           </li>
+          <li>
+            <Link to={RootPathes["/simple-form"]}>Simple Form</Link>
+          </li>
         </ul>
       </nav>
       <main>
