@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { Product } from "./contextProvider";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { ShoppingCartPathes } from "./routes";
+import { Product, ShoppingCartContext } from "./context";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -29,6 +29,7 @@ const StarIcon = ({
 const ProductDetailPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
+  const { handleCartAction } = useContext(ShoppingCartContext);
   const [product, setProduct] = useState<null | Product>(null);
 
   const fetchProductDetail = async (id: string) => {
@@ -46,6 +47,8 @@ const ProductDetailPage = () => {
   };
 
   const handleAddToCart: React.MouseEventHandler<HTMLButtonElement> = () => {
+    if (!id) return;
+    handleCartAction(id, "create");
     navigate(`../${ShoppingCartPathes.cart}`);
   };
 

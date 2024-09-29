@@ -1,55 +1,10 @@
-import { createContext, useEffect, useState } from "react";
-
-export type ProductForList = {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  thumbnail: string;
-};
-
-export type Product = ProductForList & {
-  category: string;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
-  tags: string[];
-  brand: string;
-  sku: string;
-  weight: number;
-  dimensions: {
-    width: number;
-    height: number;
-    depth: number;
-  };
-  warrantyInformation: string;
-  shippingInformation: string;
-  availabilityStatus: string;
-  reviews: {
-    rating: number;
-    comment: string;
-    date: string;
-    reviewerName: string;
-    reviewerEmail: string;
-  }[];
-  returnPolicy: string;
-  minimumOrderQuantity: number;
-  meta: {
-    createdAt: string;
-    updatedAt: string;
-    barcode: string;
-    qrCode: string;
-  };
-  images: string[];
-};
-
-export const ShoppingCartContext = createContext<{
-  isLoading: boolean;
-  products: ProductForList[];
-}>({
-  isLoading: true,
-  products: [],
-});
+import { useEffect, useState } from "react";
+import {
+  HandleCartAction,
+  ProductForCart,
+  ProductForList,
+  ShoppingCartContext,
+} from "./context";
 
 export function ShoppingCartProvider({
   children,
@@ -58,6 +13,73 @@ export function ShoppingCartProvider({
 }) {
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState<ProductForList[]>([]);
+  const [carts, setCarts] = useState<ProductForCart[]>([
+    {
+      id: 18,
+      title: "Cat Food",
+      description:
+        "Nutritious cat food formulated to meet the dietary needs of your feline friend.",
+      price: 8.99,
+      thumbnail:
+        "https://cdn.dummyjson.com/products/images/groceries/Cat%20Food/thumbnail.png",
+      quantity: 10,
+    },
+  ]);
+
+  const handleCartAction: HandleCartAction = async (id, action) => {
+    try {
+      // never believe data on client side
+      const apiResponse = await fetch(
+        `https://dummyjson.com/products/${id}?select=id,title,description,price,thumbnail`,
+      );
+
+      const result = (await apiResponse.json()) as ProductForList;
+
+      if (!result) throw new Error("some bad happened");
+
+      switch (action) {
+        case "delete":
+          setCarts((prev) => prev.filter((p) => p.id.toString() !== id));
+          break;
+        case "add":
+          setCarts((prev) =>
+            prev.map((p) => {
+              if (p.id.toString() !== id) return p;
+              return {
+                ...p,
+                quantity: p.quantity + 1,
+              };
+            }),
+          );
+          break;
+        case "minus":
+          setCarts((prev) =>
+            prev.map((p) => {
+              if (p.id.toString() !== id) return p;
+              return {
+                ...p,
+                quantity: p.quantity - 1,
+              };
+            }),
+          );
+          break;
+        default:
+          setCarts((prev) => {
+            const isExistIndex = prev.findIndex((p) => p.id.toString() === id);
+            if (isExistIndex < 0) return [...prev, { ...result, quantity: 1 }];
+            return prev.map((p) => {
+              if (p.id.toString() !== id) return p;
+              return {
+                ...p,
+                quantity: p.quantity + 1,
+              };
+            });
+          });
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const fetchListOfProducts = async () => {
     try {
@@ -85,6 +107,8 @@ export function ShoppingCartProvider({
       value={{
         isLoading,
         products,
+        carts,
+        handleCartAction,
       }}
     >
       {children}

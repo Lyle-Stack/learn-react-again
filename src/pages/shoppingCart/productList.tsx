@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { ShoppingCartContext } from "./contextProvider";
 import { Link } from "react-router-dom";
 import { ShoppingCartPathes } from "./routes";
+import { ShoppingCartContext } from "./context";
 
 const ProductListPage = () => {
   const { isLoading, products } = useContext(ShoppingCartContext);
