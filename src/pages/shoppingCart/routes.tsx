@@ -4,7 +4,7 @@ import ProductDetailPage from "./productDetail";
 import CartListPage from "./cartList";
 
 export const ShoppingCartPathes = {
-  products: (id: string) => `:${id}`,
+  products: (id: string | number) => `${id}`,
   cart: "cart",
 } as const;
 
@@ -14,7 +14,7 @@ export const ShoppingCartRouteObject: RouteObject[] = [
     element: <ProductListPage />,
   },
   {
-    path: ShoppingCartPathes["products"]("id"),
+    path: ShoppingCartPathes["products"](":id"),
     element: <ProductDetailPage />,
   },
   {

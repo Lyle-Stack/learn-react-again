@@ -1,11 +1,11 @@
 import { createContext, useEffect, useState } from "react";
 
 type Product = {
-  id: number;
-  title: string;
-  description: string;
+  id: number; //
+  title: string; //
+  description: string; //
   category: string;
-  price: number;
+  price: number; //
   discountPercentage: number;
   rating: number;
   stock: number;
@@ -36,8 +36,8 @@ type Product = {
     barcode: string;
     qrCode: string;
   };
-  images: string[];
-  thumbnail: string;
+  images: string[]; //
+  thumbnail: string; //
 };
 
 export const ShoppingCartContext = createContext<{
@@ -58,7 +58,9 @@ export function ShoppingCartProvider({
 
   const fetchListOfProducts = async () => {
     try {
-      const apiResponse = await fetch("https://dummyjson.com/products");
+      const apiResponse = await fetch(
+        "https://dummyjson.com/products?limit=12&skip=15",
+      );
       const result = await apiResponse.json();
 
       if (result?.products) {
