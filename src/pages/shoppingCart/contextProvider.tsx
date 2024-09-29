@@ -6,6 +6,11 @@ import {
   ShoppingCartContext,
 } from "./context";
 
+const getInitialState = () => {
+  const carts = sessionStorage.getItem("carts");
+  return carts ? JSON.parse(carts) : [];
+};
+
 export function ShoppingCartProvider({
   children,
 }: {
@@ -13,18 +18,7 @@ export function ShoppingCartProvider({
 }) {
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState<ProductForList[]>([]);
-  const [carts, setCarts] = useState<ProductForCart[]>([
-    {
-      id: 18,
-      title: "Cat Food",
-      description:
-        "Nutritious cat food formulated to meet the dietary needs of your feline friend.",
-      price: 8.99,
-      thumbnail:
-        "https://cdn.dummyjson.com/products/images/groceries/Cat%20Food/thumbnail.png",
-      quantity: 10,
-    },
-  ]);
+  const [carts, setCarts] = useState<ProductForCart[]>(getInitialState());
 
   const handleCartAction: HandleCartAction = async (id, action) => {
     try {
@@ -54,13 +48,16 @@ export function ShoppingCartProvider({
           break;
         case "minus":
           setCarts((prev) =>
-            prev.map((p) => {
-              if (p.id.toString() !== id) return p;
-              return {
-                ...p,
-                quantity: p.quantity - 1,
-              };
-            }),
+            prev
+              .map((p) => {
+                if (p.id.toString() !== id) return p;
+                if (p.quantity <= 1) return null;
+                return {
+                  ...p,
+                  quantity: p.quantity - 1,
+                };
+              })
+              .filter((p) => !!p),
           );
           break;
         default:
@@ -101,6 +98,10 @@ export function ShoppingCartProvider({
   useEffect(() => {
     fetchListOfProducts();
   }, []);
+
+  useEffect(() => {
+    sessionStorage.setItem("carts", JSON.stringify(carts));
+  }, [carts]);
 
   return (
     <ShoppingCartContext.Provider

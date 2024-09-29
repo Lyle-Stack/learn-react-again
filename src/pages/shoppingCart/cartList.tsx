@@ -44,17 +44,25 @@ const CartListPage = () => {
                     </div>
                     <div className="flex flex-1 items-end justify-between text-sm">
                       <div className="flex flex-row flex-nowrap gap-2">
-                        <p className="text-gray-500">Qty {product.quantity}</p>
+                        <p className="text-gray-500 min-w-12">
+                          Qty {product.quantity}
+                        </p>
 
                         <button
                           type="button"
                           className="font-medium text-white hover:text-black transition-colors bg-indigo-600 hover:bg-indigo-200 border px-2 rounded"
+                          onClick={() =>
+                            handleCartAction(product.id.toString(), "minus")
+                          }
                         >
                           -
                         </button>
                         <button
                           type="button"
                           className="font-medium text-white hover:text-black transition-colors bg-indigo-600 hover:bg-indigo-200 border px-1.5 rounded"
+                          onClick={() =>
+                            handleCartAction(product.id.toString(), "add")
+                          }
                         >
                           +
                         </button>
@@ -63,6 +71,9 @@ const CartListPage = () => {
                       <button
                         type="button"
                         className="font-medium text-indigo-600 hover:text-indigo-300"
+                        onClick={() =>
+                          handleCartAction(product.id.toString(), "delete")
+                        }
                       >
                         Remove
                       </button>
@@ -89,7 +100,7 @@ const CartListPage = () => {
           Shipping and taxes calculated at checkout.
         </p>
         <div className="mt-4 flex flex-col items-center justify-center text-center text-sm text-gray-500">
-          <button className="border-neutral-700 min-w-48 px-3 py-2 border bg-transparent text-sm font-semibold rounded hover:bg-neutral-700 hover:text-white transition-colors">
+          <button className="min-w-48 px-3 py-2 font-medium text-white hover:text-black transition-colors bg-indigo-600 hover:bg-indigo-200 border rounded">
             Checkout
           </button>
           <p className="mt-4">
