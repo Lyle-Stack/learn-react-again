@@ -4,9 +4,8 @@ import ProductDetailPage from "./productDetail";
 import CartListPage from "./cartList";
 
 export const ShoppingCartPathes = {
-  "product-list": "product-list",
-  "product-detail": "product-detail",
-  "cart-list": "cart-list",
+  products: (id: string) => `:${id}`,
+  cart: "cart",
 } as const;
 
 export const ShoppingCartRouteObject: RouteObject[] = [
@@ -15,11 +14,11 @@ export const ShoppingCartRouteObject: RouteObject[] = [
     element: <ProductListPage />,
   },
   {
-    path: ShoppingCartPathes["product-detail"],
+    path: ShoppingCartPathes["products"]("id"),
     element: <ProductDetailPage />,
   },
   {
-    path: ShoppingCartPathes["cart-list"],
+    path: ShoppingCartPathes["cart"],
     element: <CartListPage />,
   },
 ] as const;
