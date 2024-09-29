@@ -11,7 +11,7 @@ export const ShoppingCartPathes = {
 
 export const ShoppingCartRouteObject: RouteObject[] = [
   {
-    path: ShoppingCartPathes["product-list"],
+    index: true,
     element: <ProductListPage />,
   },
   {
